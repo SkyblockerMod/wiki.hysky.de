@@ -5,14 +5,12 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
     site: 'https://wiki.hysky.de',
-    base: '/main',
     integrations: [starlight({
             title: 'SkyBlocker Docs',
             customCss: [
                 // Path to your Tailwind base styles:
                 './src/tailwind.css',
             ],
-            defaultLocale: 'en',
             social: {
                 github: 'https://github.com/skyblockermod/skyblocker',
                 discord: 'https://discord.com/invite/aNNJHQykck',
