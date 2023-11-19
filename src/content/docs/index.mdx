@@ -1,36 +1,28 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Skyblocker Docs
+head:
+  - tag: title
+    content: Skyblocker Docs
+description:
+  Here are the docs for contribution guides, mod showcase and modpack showcase
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Welcome to Skyblocker docs
   image:
-    file: ../../assets/houston.webp
+    file: /src/assets/Skyblocker-Assets/other/skyblocker.png
   actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
+    - text: 👨‍💻 Contribution guide
+      link: /contribute/guide/
       variant: primary
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: 🛠️ Mod Showcase
+      link: /mod/guide/
+      variant: primary
+    - text: 📦️ Modpack Showcase
+      link: /modpack/guide/
+      variant: primary
+    - text: Images
+      link: https://hysky.de/skyblocker/gallery
       icon: external
+	  variant: secondary
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
-
-## Next steps
-
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
-</CardGrid>

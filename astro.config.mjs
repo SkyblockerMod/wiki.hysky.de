@@ -1,35 +1,47 @@
-import {defineConfig} from 'astro/config';
+import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import tailwind from "@astrojs/tailwind";
 
+const site = "https://wiki.hysky.de"
+const github = "https://github.com/SkyblockerMod"
+const discord = "https://discord.com/invite/aNNJHQykck"
+const youtube = "https://www.youtube.com/@wohlhabend_"
+
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://wiki.hysky.de',
-    integrations: [starlight({
-            title: 'SkyBlocker Docs',
+    site,
+    integrations: [
+        starlight({
+            title: 'Skyblocker Docs',
+            favicon: '/src/assets/Skyblocker-Assets/other/skyblocker.png',
             customCss: [
                 // Path to your Tailwind base styles:
                 './src/tailwind.css',
             ],
-            social: {
-                github: 'https://github.com/skyblockermod/skyblocker',
-                discord: 'https://discord.com/invite/aNNJHQykck',
-                youtube: 'https://www.youtube.com/@wohlhabend_'
-            },
+            social: { github, discord, youtube },
             editLink: {
-                baseUrl: 'https://github.com/SkyblockerMod/wiki.hysky.de/edit/main/docs/'
+                baseUrl: 'https://github.com/SkyblockerMod/wiki.hysky.de/edit/main/'
             },
-            sidebar: [{
-                label: 'Contribute',
-                autogenerate: {
-                    directory: 'contributor'
+            sidebar: [
+                {
+                    label: '👨‍💻 Contribute',
+                    autogenerate: {
+                        directory: 'contribute'
+                    }
+                },
+                {
+                    label: '🛠️ Mod',
+                    autogenerate: {
+                        directory: 'mod'
+                    }
+                },
+                {
+                    label: '📦️ Modpack',
+                    autogenerate: {
+                        directory: 'modpack'
+                    }
                 }
-            }, {
-                label: 'Mod',
-                autogenerate: {
-                    directory: 'reference'
-                }
-            }],
+            ],
             defaultLocale: 'root',
             // optional
             locales: {
@@ -49,8 +61,8 @@ export default defineConfig({
             }
         }),
         tailwind({
-                // Disable the default base styles:
-                applyBaseStyles: false,
+            // Disable the default base styles:
+            applyBaseStyles: false,
         }),
     ],
 });

@@ -1,0 +1,4 @@
+[submodule "src/assets/Skyblocker-Assets"]
+	path = src/assets/Skyblocker-Assets
+	url = https://github.com/SkyblockerMod/Skyblocker-Assets
+	branch = images
