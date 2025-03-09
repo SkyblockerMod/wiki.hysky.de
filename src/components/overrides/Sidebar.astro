@@ -1,0 +1,18 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+// import type { StarlightRouteData } from '@astrojs/starlight/route-data';
+import StarlightUtilsSidebar from '@lorenzo_lewis/starlight-utils/components/Sidebar.astro';
+import StarlightBlogSidebar from "starlight-blog/overrides/Sidebar.astro";
+
+// const isBlog = Astro.locals.starlightRoute.id.startsWith('blog')
+const curLocale = Astro.props.locale;
+const isBlog = Astro.props.id.startsWith(`${curLocale ? `${curLocale}/` : ''}blog`);
+
+---
+<div>
+    {!isBlog ? (
+        <StarlightUtilsSidebar {...Astro.props}><slot /></StarlightUtilsSidebar>
+      ) : (
+        <StarlightBlogSidebar {...Astro.props}><slot /></StarlightBlogSidebar>
+      )}
+</div>

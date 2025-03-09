@@ -1,0 +1,45 @@
+---
+import type { Props } from '@astrojs/starlight/props'
+import { Icon } from '@astrojs/starlight/components';
+import config from 'virtual:starlight/user-config';
+
+const baseurl = config.editLink.baseUrl || {};
+
+// const { editUrl } = Astro.locals.starlightRoute;
+const { editUrl, entry, locale } = Astro.props;
+let hrefurl = baseurl + entry.filePath;
+
+if (locale) {
+  const localePattern = /\/src\/content\/docs\/([^/]+)\//;
+  const match = hrefurl.match(localePattern);
+
+  const existingLocale = match ? match[1] : null;
+
+  const hasCorrectLocale = existingLocale === locale;
+
+  if (!hasCorrectLocale) {
+    hrefurl = hrefurl.replace("/src/content/docs/", `/src/content/docs/${locale}/`);
+  }
+}
+---
+
+{
+	editUrl && (
+		<a href={hrefurl} class="sl-flex print:hidden">
+			<Icon name="pencil" size="1.2em" />
+			{Astro.locals.t('page.editLink')}
+		</a>
+	)
+}
+
+<style>
+	a {
+		gap: 0.5rem;
+		align-items: center;
+		text-decoration: none;
+		color: var(--sl-color-gray-3);
+	}
+	a:hover {
+		color: var(--sl-color-white);
+	}
+</style>

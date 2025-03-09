@@ -1,0 +1,133 @@
+---
+title: ❓ Frequently Asked Questions
+description: Find answers to common questions about Skyblocker.
+---
+:::caution
+FIXME \
+Add 
+- more FAQ
+- images/gifs
+- if possible color pallete to hex generator
+:::
+
+Here you'll find answers to commonly asked questions regarding **Skyblocker**.
+
+---
+
+
+## 🎨 Item & Armor Customization
+
+### 🏷️ **How do I rename an item?**
+1. Hold your item.
+2. Run the following command:
+   ```bash
+   /skyblocker custom renameItem <text component>
+   ```
+3. Replace `<text component>` with a **valid text component JSON**. You can generate this using [this tool](https://minecraft.tools/en/json_text.php).
+
+**Example:**
+```bash
+/skyblocker custom renameItem {"text":"Custom Name","color":"#F16A19"}
+```
+
+### 🔄 **How do I remove a custom item name?**
+1. Hold your item.
+2. Run:
+   ```bash
+   /skyblocker custom renameItem
+   ```
+
+---
+
+### 🎨 **How do I dye armor with a custom color?**
+1. Hold your **dyeable armor piece**.
+2. Run:
+   ```bash
+   /skyblocker custom dyeColor <hex>
+   ```
+3. Replace `<hex>` with the **hex color code** (without `#`).
+
+**Example:**
+```bash
+/skyblocker custom dyeColor F76D11
+```
+
+### 🔄 **How do I remove a custom dye?**
+1. Hold your armor piece.
+2. Run:
+   ```bash
+   /skyblocker custom dyeColor
+   ```
+
+---
+
+### ✂ **How do I apply a custom armor trim?**
+1. Hold your **armor piece**.
+2. Run:
+   ```bash
+   /skyblocker custom armorTrim <material> <pattern>
+   ```
+3. Replace `<material>` with a valid **Minecraft material** (e.g., `minecraft:copper`).
+4. Replace `<pattern>` with a valid **trim pattern** (e.g., `minecraft:flow`).
+
+**Example:**
+```bash
+/skyblocker custom armorTrim minecraft:copper minecraft:flow
+```
+
+### 🔄 **How do I remove a custom armor trim?**
+1. Hold your armor piece.
+2. Run:
+   ```bash
+   /skyblocker custom armorTrim
+   ```
+
+---
+
+### 🌈 **How do I apply an animated dye?**
+1. Hold your **dyeable armor piece**.
+2. Run:
+   ```bash
+   /skyblocker custom animatedDye <hex1> <hex2> <samples> <cycleBack> [<tickDelay>]
+   ```
+   - `<hex1>` and `<hex2>` → **Gradient colors** (without `#`).
+   - `<samples>` → **Number of colors** in the gradient.
+   - `<cycleBack>` → **`true/false`** to reverse the animation at the end.
+   - `[tickDelay]` → *(Optional)* Delay in ticks before the color changes.
+
+**Example:**
+```bash
+/skyblocker custom animatedDye 3FC3CC 179AE6 10 true
+```
+
+### 🔄 **How do I remove an animated dye?**
+1. Hold your armor piece.
+2. Run:
+   ```bash
+   /skyblocker custom animatedDye
+   ```
+
+---
+
+## ❓ **General Troubleshooting**
+
+#### 🛠️ **The mod isn't working correctly. What should I do?**
+- Ensure you have the **latest version** of the mod installed.
+- Check that you're using **the correct version** of Minecraft & Fabric.
+- If using **other mods**, try disabling them **one by one** to find conflicts.
+- Try **restarting the game** after modifying settings.
+
+#### 🚀 **How do I reset all mod settings?**
+1. Navigate to your **`.minecraft/config`** folder.
+2. Delete or edit `skyblocker` to reset settings.
+3. Restart Minecraft.
+
+---
+
+#### 💡 **Still Need Help?**
+If you have further questions or issues:
+- **Join our Discord:** [🔗 Discord Invite](https://discord.gg/aNNJHQykck)
+- **Create an issue on Github:** [ Github](https://github.com/SkyblockerMod/Skyblocker/issues)
+- **Check the Full Documentation:** [📖 Features List](../..)
+
+---

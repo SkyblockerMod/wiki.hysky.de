@@ -1,0 +1,125 @@
+---
+import config from 'virtual:starlight/user-config';
+import { Icon } from '@astrojs/starlight/components';
+
+const locales = config.locales || {};
+const currentLocale = Astro.props.locale;
+const currentUrl = Astro.url;
+
+const { t } = Astro.locals;
+
+function localizedUrl(url: URL, locale: string ): string {
+  if (!config.locales) return url.pathname;
+
+  if (locale === 'root') locale = '';
+
+  const pathSegments = url.pathname.split('/');
+  const currentLang = pathSegments[1];
+
+  if (currentLang in locales) {
+    pathSegments[1] = locale;
+  } else if (locale) {
+    pathSegments.splice(1, 0, locale);
+  }
+
+  const newPath = pathSegments.join('/');
+  return newPath.startsWith('//') ? newPath.replace('//', '/') : newPath || '/';
+}
+
+const languageOptions = Object.entries(locales as Record<string, { label: string }>)
+  .map(([code, locale]) => ({
+    value: localizedUrl(currentUrl, code),
+    disabled: (code === currentLocale) || (code === 'root' && currentLocale === undefined),
+    label: locale.label,
+  }));
+
+languageOptions.push({ 
+  value: "", 
+  disabled: true, 
+  label: '─────────' 
+});
+
+languageOptions.push({ 
+  value: "https://github.com/SkyblockerMod/wiki.hysky.de/edit/main/astro.config.mjs#L43", 
+  disabled: false, 
+  label: `➕ ${t('lang.addmore')}` 
+});
+---
+
+{config.isMultilingual && (
+  <label class="language-select">
+    <span class="sr-only">{Astro.locals.t('languageSelect.accessibleLabel')}</span>
+
+    <Icon class="icon label-icon" name="translate" size="1.2em" />
+
+    <select onchange="window.location.href=this.value">
+      {languageOptions.map(({ value, disabled, label }) => (
+        <option value={value} disabled={disabled} selected={value === localizedUrl(currentUrl, currentLocale)}>
+          {label}
+        </option>
+      ))}
+    </select>
+    
+    <Icon name="down-caret" class="icon caret-icon" />
+  </label>
+)}
+
+<style>
+  .language-select {
+    --sl-label-icon-size: 0.875rem;
+    --sl-caret-size: 1.25rem;
+    --sl-inline-padding: 0.5rem;
+    
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--sl-color-gray-1);
+  }
+
+  .language-select:hover {
+    color: var(--sl-color-gray-2);
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    fill: currentColor;
+  }
+
+  .label-icon {
+    font-size: var(--sl-label-icon-size);
+    inset-inline-start: 0;
+  }
+
+  .caret-icon {
+    font-size: var(--sl-caret-size);
+    inset-inline-end: 0;
+  }
+
+  select {
+    border: 0;
+    padding-block: 0.625rem;
+    padding-inline: calc(var(--sl-label-icon-size) + var(--sl-inline-padding) + 0.25rem)
+      calc(var(--sl-caret-size) + var(--sl-inline-padding) - 1.5rem);
+    margin-inline: calc(var(--sl-inline-padding) * -1);
+    width: calc(var(--sl-select-width) + var(--sl-inline-padding) * 2);
+    background-color: transparent;
+    text-overflow: ellipsis;
+    color: inherit;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  option:disabled {
+    color: var(--sl-color-gray-3);
+  }
+
+  @media (min-width: 50rem) {
+    select {
+      font-size: var(--sl-text-sm);
+    }
+  }
+</style>
