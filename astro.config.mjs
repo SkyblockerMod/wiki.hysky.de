@@ -11,7 +11,6 @@ const youtube = "https://www.youtube.com/";
 
 // https://astro.build/config
 export default defineConfig({
-  site: site,
   integrations: [
     starlight({
       title: "Skyblocker",
