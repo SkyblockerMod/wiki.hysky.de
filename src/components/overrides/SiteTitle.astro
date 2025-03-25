@@ -32,10 +32,11 @@ const links: Link[] = [
 		transfer: false,
 	}
 ];
+const rootpathurl = curLocale ? "/"+curLocale+"/mod" : "/mod"
 ---
 
 <>
-  <Default {...Astro.props}><slot /></Default>
+  <Default {...Astro.props} siteTitleHref=`${rootpathurl}`><slot /></Default>
 
   <starlight-select class="mobile">
     <label>

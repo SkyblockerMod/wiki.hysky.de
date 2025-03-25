@@ -1,8 +1,152 @@
 ---
-title: 👨‍💻 Contribute Guide
-description: A guide in my new Starlight docs site.
+title: 👨‍💻 Contribute Guidelines
+description: Guidelines and conventions for contributing to Skyblocker
 ---
 
 :::caution
 Work in progress
 :::
+
+# Welcome!
+
+We welcome contributions from anyone for any feature related to **Hypixel Skyblock**.  
+Feel free to ask any questions in our [Discord server](https://discord.com/invite/aNNJHQykck)!
+
+---
+
+## Quick Start (TL;DR)
+
+✅ Fork & clone the repo  
+✅ Follow the [code style guidelines](#code-style)  
+✅ Test your feature thoroughly  
+✅ Document your code  
+✅ Submit a PR with a clear description  
+✅ Join our [Discord](https://discord.com/invite/aNNJHQykck) if you need help!
+
+
+## Code Style
+
+Please follow the [Fabric Development Guidelines](https://github.com/FabricMC/fabric/blob/1.21.5/CONTRIBUTING.md) when writing code.
+
+- **Class names:** `TitleCase`
+- **Static final fields:** `SCREAMING_SNAKE_CASE` (except for specific exceptions)
+- **Methods & fields:** `camelCase`
+
+### Code Cleanup
+
+Ensure you run code cleanup **before submitting a PR**.
+
+**IntelliJ Shortcuts:**
+
+- Code cleanup: `Command/Control + Option + L`
+- Import cleanup: `Control + Option + O`
+
+:::note
+We enforce code style using a standardized [`.editorconfig`](https://github.com/SkyblockerMod/Skyblocker/blob/master/.editorconfig).
+
+**Highlights:**
+
+- Java & Gradle files → **Tabs (tab width: 4)**
+- JSON & Properties files → **Spaces (2 spaces)**
+- IntelliJ-specific settings for keeping simple blocks, methods, and lambdas in one line
+
+Your IDE should automatically apply these settings.  
+You can manually convert indents if needed:  
+`Edit -> Convert Indents`
+:::
+
+**Recommended IntelliJ Settings:**
+
+- `Settings -> Editor -> Code Style -> Java`
+- Set `Wrapping and Braces -> Hard wrap at` to `1000`
+- Enable:
+  - `Keep when reformatting -> Simple blocks in one line`
+  - `Simple methods in one line`
+  - `Simple lambdas in one line`
+  - `Simple classes in one line`
+
+---
+
+## Documentation
+
+We require **Javadocs and comments** for classes and methods, except:
+
+- Simple methods
+- Getters/setters
+- Boilerplate code
+
+**Please include:**
+
+- Implementation details
+- Legal & illegal parameter values
+- Nullability annotations
+
+**Examples of well-documented classes:**
+
+- [TooltipAdder](https://github.com/SkyblockerMod/Skyblocker/blob/c87ad261a1c6ce976573b660a65e71ab03bdc106/src/main/java/de/hysky/skyblocker/skyblock/item/tooltip/TooltipAdder.java#L15)
+- [DungeonManager](https://github.com/SkyblockerMod/Skyblocker/blob/c87ad261a1c6ce976573b660a65e71ab03bdc106/src/main/java/de/hysky/skyblocker/skyblock/dungeon/secrets/DungeonManager.java)
+- [ItemUtils](https://github.com/SkyblockerMod/Skyblocker/blob/c87ad261a1c6ce976573b660a65e71ab03bdc106/src/main/java/de/hysky/skyblocker/utils/ItemUtils.java)
+- [RenderHelper](https://github.com/SkyblockerMod/Skyblocker/blob/c87ad261a1c6ce976573b660a65e71ab03bdc106/src/main/java/de/hysky/skyblocker/utils/render/RenderHelper.java)
+
+### Annotations
+
+Use appropriate annotations:
+
+- `@org.jetbrains.annotations.Nullable`
+- `@Language("RegExp")`
+- `@Translatable`
+
+---
+
+## Mixins
+
+Prefer **Fabric events** over mixins.  
+If necessary, prefer using [Mixin Extras](https://github.com/LlamaLad7/MixinExtras) instead of invasive mixins (like redirects).
+
+---
+
+## Configuration
+
+All features **must** have configuration options!
+
+Skyblocker uses [YACL (YetAnotherConfigLib)](https://github.com/isXander/YetAnotherConfigLib) for configs.
+
+**Steps:**
+
+1. Add config fields to `SkyblockerConfig`.
+2. Add entries to the relevant category (e.g., `DungeonsCategory`).
+3. Update the English localization in `en_us.json`.
+4. Keep config fields and localization entries in the same order to reduce confusion.
+5. Sort localization entries alphabetically.
+
+---
+
+## Testing
+
+Please **thoroughly test** your features before submitting a PR.
+
+We strongly recommend:
+
+- Screenshots or showcase videos
+- Clear notes if the PR has not been tested
+- Adding unit tests where possible  
+  (See [ItemUtilsTest](https://github.com/SkyblockerMod/Skyblocker/blob/master/src/test/java/de/hysky/skyblocker/utils/ItemUtilsTest.java) for an example)
+
+---
+
+## Translating Skyblocker
+
+Skyblocker uses [Weblate](https://translate.hysky.de) for translations.
+
+All translators will:
+
+- Be mentioned in the README
+- Receive a **Translator** tag in our [Discord server](https://discord.com/invite/aNNJHQykck)
+
+➡️ More details on how to contribute translations are in the [Translation Guide](./translation).
+
+---
+
+## Thank You!
+
+Thank you for contributing to **Skyblocker** — we hope you enjoy working with us!
