@@ -1,0 +1,33 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Footer.astro';
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+
+const { t } = Astro.locals;
+---
+
+<Default {...Astro.props}><slot /></Default>
+  <div class="w-full mobile">
+    <div class="text-xs leading-5">
+      <strong>{t('community')}</strong>
+    </div>
+    <div class="sl-flex social-icons">
+			<SocialIcons {...Astro.props} />
+		</div>   
+  </div>
+  
+
+<style>
+  .mobile {
+    display: block;
+  }
+  .social-icons {
+		gap: 1rem;
+		align-items: center;
+	}
+  @media (min-width: 50rem) {
+    .mobile {
+      display: none;
+    }
+  }
+</style>

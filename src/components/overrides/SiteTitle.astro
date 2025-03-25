@@ -36,13 +36,14 @@ const rootpathurl = curLocale ? "/"+curLocale+"/mod" : "/mod"
 ---
 
 <>
-  <Default {...Astro.props} siteTitleHref=`${rootpathurl}`><slot /></Default>
+  <Default {...Astro.props} siteTitleHref={rootpathurl}><slot /></Default>
 
   <starlight-select class="mobile">
-    <label>
-      {!isBlog && (
-        <select aria-label="Menu">
-          <option value="" disabled selected>Menu</option>
+    {!isBlog && (
+      <>
+        <label for="menu-select"></label>
+        <select id="menu-select" class="menu">
+          <option value="" disabled selected>{t('menu.label')}</option>
           {
             links.map((link) => (
               <option
@@ -50,13 +51,13 @@ const rootpathurl = curLocale ? "/"+curLocale+"/mod" : "/mod"
                 set:html={link.title}
               />
             ))
-          },
+          }
           <option disabled>────────────</option>
           <option value={`/${curLocale ? `${curLocale}/` : ''}blog`}>📰 {t('menu.blog.title')}</option>
         </select>
-      <Icon name="down-caret" class="icon caret" />
-      )}
-    </label>
+        <Icon name="down-caret" class="icon caret" />
+      </>
+    )}
   </starlight-select>
 </>
 
@@ -83,6 +84,11 @@ const rootpathurl = curLocale ? "/"+curLocale+"/mod" : "/mod"
     align-items: center;
     gap: 1rem;
     padding-inline-start: 1rem;
+  }
+  @media (min-width: 50rem) and (max-width: 55rem) {
+    .menu {
+      text-align: center;
+    }
   }
   @media (min-width: 72rem) {
     .desktop {

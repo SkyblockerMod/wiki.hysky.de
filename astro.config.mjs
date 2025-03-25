@@ -15,6 +15,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Skyblocker",
+      logo: {
+        src: '/public/images/uploads/skyblocker.svg',
+      },
       favicon: "/src/assets/Skyblocker-Assets/other/skyblocker.png",
       social: { github, discord, youtube },
       components: {
@@ -22,6 +25,7 @@ export default defineConfig({
 		    Sidebar: "./src/components/overrides/Sidebar.astro",
         LanguageSelect: "./src/components/overrides/LanguageSelect.astro",
         EditLink: "./src/components/overrides/EditLink.astro",
+        Footer: "./src/components/overrides/Footer.astro",
       },
       editLink: {
         baseUrl: "https://github.com/SkyblockerMod/wiki.hysky.de/edit/main/",
