@@ -1,11 +1,9 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/SiteTitle.astro';
 import { Icon } from '@astrojs/starlight/components';
 
 //const isBlog = Astro.locals.starlightRoute.id.startsWith('blog')
-const curLocale = Astro.props.locale;
-const isBlog = Astro.props.id.startsWith(`${curLocale ? `${curLocale}/` : ''}blog`);
+const { locale } = Astro.locals.starlightRoute;
 
 const { t } = Astro.locals;
 
@@ -32,32 +30,32 @@ const links: Link[] = [
 		transfer: false,
 	}
 ];
-const rootpathurl = curLocale ? "/"+curLocale+"/mod" : "/mod"
+const rootpathurl = locale ? "/"+locale+"/mod" : "/mod"
+Astro.locals.starlightRoute.siteTitleHref = rootpathurl;
+
 ---
 
 <>
-  <Default {...Astro.props} siteTitleHref={rootpathurl}><slot /></Default>
+  <Default><slot /></Default>
 
   <starlight-select class="mobile">
-    {!isBlog && (
-      <>
-        <label for="menu-select"></label>
-        <select id="menu-select" class="menu">
-          <option value="" disabled selected>{t('menu.label')}</option>
-          {
-            links.map((link) => (
-              <option
-                value={link.transfer && curLocale ? `/${curLocale}${link.value}` : link.value}
-                set:html={link.title}
-              />
-            ))
-          }
-          <option disabled>────────────</option>
-          <option value={`/${curLocale ? `${curLocale}/` : ''}blog`}>📰 {t('menu.blog.title')}</option>
-        </select>
-        <Icon name="down-caret" class="icon caret" />
-      </>
-    )}
+
+    <label for="menu-select"></label>
+    <select id="menu-select" class="menu">
+      <option value="" disabled selected>{t('menu.label')}</option>
+      {
+        links.map((link) => (
+          <option
+            value={link.transfer && locale ? `/${locale}${link.value}` : link.value}
+            set:html={link.title}
+          />
+        ))
+      }
+      <option disabled>────────────</option>
+      <option value={`blog`}>📰 {t('menu.blog.title')}</option>
+    </select>
+    <Icon name="down-caret" class="icon caret" />
+
   </starlight-select>
 </>
 

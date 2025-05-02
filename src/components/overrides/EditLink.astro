@@ -1,12 +1,10 @@
 ---
-import type { Props } from '@astrojs/starlight/props'
 import { Icon } from '@astrojs/starlight/components';
 import config from 'virtual:starlight/user-config';
 
 const baseurl = config.editLink.baseUrl || {};
 
-// const { editUrl } = Astro.locals.starlightRoute;
-const { editUrl, entry, locale } = Astro.props;
+const { editUrl, entry, locale } = Astro.locals.starlightRoute;
 let hrefurl = baseurl + entry.filePath;
 
 if (locale) {

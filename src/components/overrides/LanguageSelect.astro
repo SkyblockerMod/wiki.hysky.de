@@ -3,7 +3,7 @@ import config from 'virtual:starlight/user-config';
 import { Icon } from '@astrojs/starlight/components';
 
 const locales = config.locales || {};
-const currentLocale = Astro.props.locale;
+const { locale } = Astro.locals.starlightRoute;
 const currentUrl = Astro.url;
 
 const { t } = Astro.locals;
@@ -27,10 +27,10 @@ function localizedUrl(url: URL, locale: string ): string {
 }
 
 const languageOptions = Object.entries(locales as Record<string, { label: string }>)
-  .map(([code, locale]) => ({
+  .map(([code, localec]) => ({
     value: localizedUrl(currentUrl, code),
-    disabled: (code === currentLocale) || (code === 'root' && currentLocale === undefined),
-    label: locale.label,
+    disabled: (code === locale) || (code === 'root' && locale === undefined),
+    label: localec.label,
   }));
 
 languageOptions.push({ 
@@ -54,7 +54,7 @@ languageOptions.push({
 
     <select onchange="window.location.href=this.value">
       {languageOptions.map(({ value, disabled, label }) => (
-        <option value={value} disabled={disabled} selected={value === localizedUrl(currentUrl, currentLocale)}>
+        <option value={value} disabled={disabled} selected={value === localizedUrl(currentUrl, locale ?? '')}>
           {label}
         </option>
       ))}

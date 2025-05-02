@@ -12,11 +12,10 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.4",
-    "@astrojs/starlight": "0.30.0",
-    "@lorenzo_lewis/starlight-utils": "0.3.0",
-    "astro": "5.4.1",
+    "@astrojs/starlight": "0.34.2",
+    "@lorenzo_lewis/starlight-utils": "https://hysky.de/lorenzo_lewis-starlight-utils-0.3.2.tgz",
+    "astro": "5.7.10",
     "sharp": "^0.33.5",
-    "starlight-blog": "^0.16.1",
     "starlight-heading-badges": "^0.4.1",
     "typescript": "^5.5.4"
   }

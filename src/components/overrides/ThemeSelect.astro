@@ -1,17 +1,15 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
 import { Icon } from '@astrojs/starlight/components';
 
 //const isBlog = Astro.locals.starlightRoute.id.startsWith('blog')
-const curLocale = Astro.props.locale;
-const isBlog = Astro.props.id.startsWith(`${curLocale ? `${curLocale}/` : ''}blog`);
+// const { locale } = Astro.locals.starlightRoute;
 const { t } = Astro.locals;
 
 ---
 
 <div>
-  <a href={`/${isBlog ? (curLocale ? `${curLocale}/` : '') : `${curLocale ? `${curLocale}/` : ''}blog/`}`}>
-    {isBlog ? t('menu.docs.title') : t('menu.blog.title')}
+  <a href={`https://blog.hysky.de`}>
+    {t('menu.blog.title')}
   </a>
 </div>
 
